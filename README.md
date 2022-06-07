@@ -9,8 +9,7 @@ pip install -r  requirements.txt
 
 Link for a pretrained network to perform binary classification (tumore versus no tumor):
 
-gdown([https://drive.google.com/file/d/18oK4RWmfACHVo6PtbZshYcBxiIiDC65L/view?usp=sharing
-](https://drive.google.com/uc?export=download&id=18oK4RWmfACHVo6PtbZshYcBxiIiDC65L)
+https://drive.google.com/file/d/18oK4RWmfACHVo6PtbZshYcBxiIiDC65L/view?usp=sharing
 
 Link for the training and testing data:
 
