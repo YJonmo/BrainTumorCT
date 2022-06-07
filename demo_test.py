@@ -7,4 +7,4 @@ Vars = globalVars.parse()
 
 trainer = TrainerAndTester(Vars)
 
-trainer.test(os.path.join(Vars.save_path  , 'resnet50_4_2_20.pt'))
+trainer.test(os.path.join(Vars.save_path  , 'resnet50_4_2_40.pt'))
