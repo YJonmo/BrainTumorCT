@@ -1,6 +1,6 @@
 data_CTtraining/*
 saved_models/*
 *.pickle
-*.dcm
+#*.dcm
 *jpg
 *.pt
