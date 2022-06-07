@@ -3,7 +3,7 @@ import time
 import torch
 import pickle
 import numpy as np
-import numpy as pd
+import pandas as pd
 import seaborn as sns
 import torch.nn as  nn
 from matplotlib import pyplot as plt
