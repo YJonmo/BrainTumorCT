@@ -114,7 +114,7 @@ class TrainerAndTester:
             e_start = time.time()
             # Batch Training
             for b, (Y, X) in enumerate(train_loader):
-                X, Y = X.to(device), Y.to(device)
+                X, Y = X.to(self.device), Y.to(self.device)
                 # Forward passing image
                 Y_pred = trainingModel(X.view(-1, 3, self.vars.image_size, self.vars.image_size))
                 # Loss calculation
