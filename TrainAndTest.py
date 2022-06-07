@@ -247,7 +247,7 @@ class TrainerAndTester:
 
         # Setting model to evaluation mode
         trainingModel.eval()
-        print('Running the trained model on' + str(len(train_set) + 'sample data')
+        print('Running the trained model on' + str(len(train_set) + 'sample data'))
         # No weight updates
         with torch.no_grad():
             # some metrics storage for visualization and analysis
