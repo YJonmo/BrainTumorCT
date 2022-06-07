@@ -149,7 +149,7 @@ class TrainerAndTester:
             with torch.no_grad():
                 for b, (Y, X) in enumerate(test_loader):
                     # set label as cuda if device is cuda
-                    X, Y = X.to(device), y.to(device)
+                    X, Y = X.to(self.device), y.to(self.device)
 
                     # forward pass image
                     Y_val = trainingModel(X.view(-1, 3, self.vars.image_size, self.vars.image_size))
@@ -235,9 +235,9 @@ class TrainerAndTester:
         train_set, test_set = self.get_data()
         test_loader = DataLoader(test_set, 1, shuffle=True, pin_memory=True, num_workers=1)
 
-        device = torch.device(self.device_name)
+        # device = torch.device(self.device_name)
         trainingModel = self.get_model()
-        trainingModel.to(device)
+        trainingModel.to(self.device)
         # trainingModel.load_state_dict(torch.load('/content/drive/MyDrive/BrainTumorCT/bt_resnet50_bt_intermodel.pth.tar'))
         # filename = os.path.join(self.vars.ROOT, self.vars.save_path, self.vars.model + '_' + self.vars.batch_size + '_' + self.vars.epochs + '.pth.tar')
         #Stats = torch.load(filename)
@@ -257,7 +257,7 @@ class TrainerAndTester:
             # Batch wise test set evaluation
             for (y, X) in test_loader:
                 # Use GPU if available
-                X, y = X.to(device), y.to(device)
+                X, y = X.to(self.device), y.to(self.device)
                 print('X.shape')
                 print(X.shape)
                 print('y.shape')
