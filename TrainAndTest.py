@@ -247,7 +247,7 @@ class TrainerAndTester:
 
         # Setting model to evaluation mode
         trainingModel.eval()
-
+        print('Running the trained model on' + str(len(train_set) + 'sample data')
         # No weight updates
         with torch.no_grad():
             # some metrics storage for visualization and analysis
@@ -258,32 +258,20 @@ class TrainerAndTester:
             for (y, X) in test_loader:
                 # Use GPU if available
                 X, y = X.to(self.device), y.to(self.device)
-                print('X.shape')
-                print(X.shape)
-                print('y.shape')
-                print(y.shape)
 
                 # Original labels
                 #labels.append(torch.argmax(y.view(self.vars.batch_size, self.vars.no_classes), dim=1).data)
                 #labels.append(torch.argmax(y.view(1, self.vars.no_classes), dim=1).data)
                 labels.append(torch.argmax(y.view(1, self.vars.no_classes), dim=1).data)
 
-                print('labels.shape')
-                print(labels[0].shape)
-                # Forward pass
                 y_val = trainingModel(X.view(-1, 3, self.vars.image_size, self.vars.image_size))
-                print('y_val.shape')
-                print(y_val.shape)
-                print('X.view(-1, 3, self.vars.image_size,self.vars.image_size)')
-                print(X.view(-1, 3, self.vars.image_size, self.vars.image_size).shape)
+
                 # The argmax of the predicted tensor is assigned as our label
                 pred_label = torch.argmax(y_val, dim=1).data
-                print('pred_label.shape')
-                print(pred_label.shape)
+
                 # Predicted label addition to the list
                 pred.append(pred_label)
-                print('pred.shape')
-                print(pred[0].shape)
+
                 # Compute loss
                 #loss = self.crossen_loss(y_val.float(),
                 #                    torch.argmax(y.view(self.vars.batch_size, self.vars.no_classes), dim=1).long())
