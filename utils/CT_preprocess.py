@@ -21,7 +21,7 @@ class CT_preprocess():
         # Unzip it
         with ZipFile(CTfile, 'r') as zipObj:
             # Extract all the contents of zip file in current directory
-            zipObj.extractall(self.vars.data_dicom)
+            zipObj.extractall(self.vars.data_path)
 
     def extract_dicom(self, rewrite=False):#, image_size, imageSizeThreshMax, imageSizeThreshMin, rewrite=False):
         if not os.path.exists(self.vars.data_jpg):
