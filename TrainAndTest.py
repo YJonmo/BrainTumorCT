@@ -49,7 +49,7 @@ class TrainerAndTester:
 
         return train_set, test_set
 
-    def get_model(self):
+    def get_model(self, pretrained_path=None):
 
         if self.vars.model == 'resnet50':
             trainingModel = models.resnet50(pretrained=True)
@@ -81,6 +81,8 @@ class TrainerAndTester:
         self.crossen_loss = nn.CrossEntropyLoss().to(self.device)
         self.sgd_opt = torch.optim.SGD(trainingModel.parameters(), momentum=0.9, lr=3e-4)
 
+        if pretrained_path:
+            trainingModel.load_state_dict(torch.load(pretrained_path))
         return trainingModel
 
 
