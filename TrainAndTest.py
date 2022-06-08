@@ -300,4 +300,5 @@ class TrainerAndTester:
         sns.heatmap(df_cm, annot=True, fmt="d", cmap='YlGnBu')
         plt.xlabel("Prediction")
         plt.ylabel("Target")
+        plt.savefig('ConfusionMatrix.png')
         plt.show()
