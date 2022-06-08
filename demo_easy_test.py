@@ -20,7 +20,7 @@ CTs = sorted(glob.glob(Vars.test_dicom + '/*'))
 
 
 
-testingModel = tester.get_model(pretrained_path=os.path.join(Vars.save_path, 'resnet504_haha2_30.pt'))
+testingModel = tester.get_model(pretrained_path=os.path.join(Vars.save_path, 'resnet50_4_2_40.pt'))
 testingModel.to(tester.device)
 Trans = T.Compose([T.ToPILImage(), T.Resize((128, 128)),T.ToTensor()])
 with torch.no_grad():
