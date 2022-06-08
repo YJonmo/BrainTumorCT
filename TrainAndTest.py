@@ -192,7 +192,7 @@ class TrainerAndTester:
 
         #saving the model
         torch.cuda.empty_cache()
-        torch.save(trainingModel.state_dict(), os.path.join(self.vars.save_path, self.vars.model +
+        torch.save(trainingModel.state_dict(), os.path.join(self.vars.save_path, self.vars.model + '_'+
                 str(self.vars.batch_size) + '_' + str(self.vars.no_classes) + '_' + str(self.vars.epochs) + '.pt'))
 
         Y_val = trainingModel(X.view(-1, 3, self.vars.image_size, self.vars.image_size))
