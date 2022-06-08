@@ -49,7 +49,7 @@ class TrainerAndTester:
 
         return train_set, test_set
 
-    def get_model(self, pretrained_path=None):
+    def get_model(self, pretrained_path=None, requires_grad=True):
 
         if self.vars.model == 'resnet50':
             trainingModel = models.resnet50(pretrained=True)
@@ -60,7 +60,7 @@ class TrainerAndTester:
 
         # Training all parameters
         for param in trainingModel.parameters():
-            param.requires_grad = True
+            param.requires_grad = requires_grad
         # Input for fully connected layer
         n_inputs = trainingModel.fc.in_features
 
@@ -75,7 +75,7 @@ class TrainerAndTester:
 
         for name, child in trainingModel.named_children():
             for name2, params in child.named_parameters():
-                params.requires_grad = True
+                params.requires_grad = requires_grad
 
         # Define the loss and optimizer
         self.crossen_loss = nn.CrossEntropyLoss().to(self.device)
@@ -241,7 +241,7 @@ class TrainerAndTester:
         print('Running the trained model for testing on ' + str(len(test_set.Y)) + ' sample data')
 
         # device = torch.device(self.device_name)
-        testingModel = self.get_model()
+        testingModel = self.get_model(requires_grad=False)
         testingModel.to(self.device)
         # trainingModel.load_state_dict(torch.load('/content/drive/MyDrive/BrainTumorCT/bt_resnet50_bt_intermodel.pth.tar'))
         # filename = os.path.join(self.vars.ROOT, self.vars.save_path, self.vars.model + '_' + self.vars.batch_size + '_' + self.vars.epochs + '.pth.tar')
