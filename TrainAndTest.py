@@ -146,14 +146,14 @@ class TrainerAndTester:
             train_losses.append(loss)
             train_accs.append(train_corr)
 
-            X, y = None, None
+            X, Y = None, None
 
             # Validation using val_loader data
             # The backpropagation isn't performed as it is validation data
             with torch.no_grad():
                 for b, (Y, X) in enumerate(test_loader):
                     # set label as cuda if device is cuda
-                    X, Y = X.to(self.device), y.to(self.device)
+                    X, Y = X.to(self.device), Y.to(self.device)
 
                     # forward pass image
                     Y_val = trainingModel(X.view(-1, 3, self.vars.image_size, self.vars.image_size))
@@ -162,10 +162,10 @@ class TrainerAndTester:
                     mod_pred = torch.argmax(Y_val, dim=1).data
                     mod_pred[0]
                     # Batch correct is added to validation correct for tracking the # of correctly predicted labels of the validation data
-                    val_corr += (mod_pred == torch.argmax(y.view(-1, self.vars.no_classes), dim=1)).sum()
+                    val_corr += (mod_pred == torch.argmax(Y.view(-1, self.vars.no_classes), dim=1)).sum()
 
             # Loss of validation set
-            loss = self.crossen_loss(Y_val.float(), torch.argmax(y.view(-1, self.vars.no_classes), dim=1).long())
+            loss = self.crossen_loss(Y_val.float(), torch.argmax(Y.view(-1, self.vars.no_classes), dim=1).long())
             # Output validation metrics
             print(
                 f'Validation Accuracy {val_corr.item() * 100 / (self.vars.batch_size * b):2.2f} Validation Loss: {loss.item():2.6f}\n')
