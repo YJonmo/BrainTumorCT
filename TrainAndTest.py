@@ -22,7 +22,7 @@ class TrainerAndTester:
         self.device = torch.device(self.device_name)
 
     def save_model(self, state, is_best):
-        filename=os.path.join(self.vars.save_path, self.vars.model +
+        filename=os.path.join(self.vars.save_path, self.vars.model + '_' +
                 str(self.vars.batch_size) + '_' + str(self.vars.no_classes) + '_' + str(self.vars.epochs) + '.pth.tar')
         torch.save(state, filename)
 
