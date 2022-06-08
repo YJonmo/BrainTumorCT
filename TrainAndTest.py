@@ -238,6 +238,7 @@ class TrainerAndTester:
     def test(self, model_path):
         train_set, test_set = self.get_data()
         test_loader = DataLoader(test_set, 1, shuffle=True, pin_memory=True, num_workers=1)
+        print('Running the trained model for testing on ' + str(len(test_set.Y)) + ' sample data')
 
         # device = torch.device(self.device_name)
         testingModel = self.get_model()
@@ -251,7 +252,6 @@ class TrainerAndTester:
 
         # Setting model to evaluation mode
         testingModel.eval()
-        print('Running the trained model on' + str(len(train_set)) + 'sample data')
         # No weight updates
         with torch.no_grad():
             # some metrics storage for visualization and analysis
