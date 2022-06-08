@@ -15,4 +15,4 @@ Vars = globalVars.parse()
 tester = TrainerAndTester(Vars)
 
 #runing the trained model on testing data
-tester.test(os.path.join(Vars.save_path  , 'resnet50_4_2_40.pt'))
+tester.test(os.path.join(Vars.save_path  , Vars.saved_model))

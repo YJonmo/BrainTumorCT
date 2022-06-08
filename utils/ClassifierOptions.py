@@ -49,6 +49,11 @@ class Options:
                                  help="path to the saved models",
                                  default=os.path.join(ROOT, 'saved_models'))
 
+        self.parser.add_argument("--saved_model_name",
+                                 type=str,
+                                 help="name of the saved model for validation",
+                                 default=os.path.join(ROOT, 'saved_models/resnet50_4_2_40.pt'))
+
         self.parser.add_argument("--test_dicom",
                                  type=str,
                                  help="path to the saved models",
