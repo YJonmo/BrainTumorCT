@@ -16,7 +16,7 @@ class Options:
         self.parser.add_argument("--data_dicom",
                                  type=str,
                                  help="path to the raw dicom data",
-                                 default=os.path.join(ROOT, 'data_CTtraining', 'training'))
+                                 default=os.path.join(ROOT, 'data_CTtraining'))
 
         self.parser.add_argument("--data_jpg",
                                  type=str,
