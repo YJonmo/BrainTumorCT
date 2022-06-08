@@ -15,7 +15,7 @@ class CT_preprocess():
     def download_dicom(self, URL='https://drive.google.com/u/0/uc?id=1qlmzqAQr2miOIAIWjdZSy_g3dRP28b0q&export=download',
                        FileName='CTtraining.zip'):
         #Download it
-        CTfile = os.path.join(self.vars.data_dicom, FileName)
+        CTfile = os.path.join(self.vars.data_path, FileName)
         gdown.download(URL, CTfile)
 
         # Unzip it
