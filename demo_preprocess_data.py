@@ -1,3 +1,8 @@
+####################################################################################################
+# this is pipeline for reading, preprocessing, and converting the dicom images into jpg and pickle
+# files and splitting them into training and testing
+# This is a time consuming and the processed pickled outputs are provided via google drive link
+####################################################################################################
 from utils.preprocess_funcs import *
 from utils.ClassifierOptions import Options
 from utils.CT_preprocess import CT_preprocess

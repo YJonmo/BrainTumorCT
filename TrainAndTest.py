@@ -1,3 +1,6 @@
+####################################################################################################
+# this is pipeline for training and testing the deep network
+####################################################################################################
 import os
 import time
 import torch
@@ -19,7 +22,8 @@ class TrainerAndTester:
         self.device = torch.device(self.device_name)
 
     def save_model(self, state, is_best):
-        filename=os.path.join(self.vars.ROOT, self.vars.save_path, self.vars.model + '_' + self.vars.batch_size + '_' + self.vars.epochs + '.pth.tar')
+        filename=os.path.join(self.vars.save_path, self.vars.model +
+                str(self.vars.batch_size) + '_' + str(self.vars.no_classes) + '_' + str(self.vars.epochs) + '.pth.tar')
         torch.save(state, filename)
 
     def get_data(self):
@@ -102,8 +106,6 @@ class TrainerAndTester:
         start_time = time.time()
         # Batch Variables
         b = None
-        train_b = None
-        test_b = None
 
         # Training
         for i in range(self.vars.epochs):
@@ -138,7 +140,7 @@ class TrainerAndTester:
                   f'{train_corr.item() * 100 / (self.vars.batch_size * b):2.2f} %  Training Loss: {loss.item():2.6f}  '
                   f'Training Duration: {((e_end - e_start) / 60):.2f} minutes')
             # Storing the training losses and correct to plot graph between losses and predicted corrects with batch
-            train_b = b
+
             train_losses.append(loss)
             train_accs.append(train_corr)
 
@@ -188,7 +190,7 @@ class TrainerAndTester:
 
         #saving the model
         torch.cuda.empty_cache()
-        torch.save(trainingModel.state_dict(), os.path.join(self.vars.ROOT, self.vars.model +
+        torch.save(trainingModel.state_dict(), os.path.join(self.vars.save_path, self.vars.model +
                 str(self.vars.batch_size) + '_' + str(self.vars.no_classes) + '_' + str(self.vars.epochs) + '.pt'))
 
         Y_val = trainingModel(X.view(-1, 3, self.vars.image_size, self.vars.image_size))
@@ -236,17 +238,17 @@ class TrainerAndTester:
         test_loader = DataLoader(test_set, 1, shuffle=True, pin_memory=True, num_workers=1)
 
         # device = torch.device(self.device_name)
-        trainingModel = self.get_model()
-        trainingModel.to(self.device)
+        testingModel = self.get_model()
+        testingModel.to(self.device)
         # trainingModel.load_state_dict(torch.load('/content/drive/MyDrive/BrainTumorCT/bt_resnet50_bt_intermodel.pth.tar'))
         # filename = os.path.join(self.vars.ROOT, self.vars.save_path, self.vars.model + '_' + self.vars.batch_size + '_' + self.vars.epochs + '.pth.tar')
         #Stats = torch.load(filename)
         #trainingModel.dict = (Stats['state_dict'])
-        trainingModel.load_state_dict(torch.load(model_path))
+        testingModel.load_state_dict(torch.load(model_path))
         train_loader, val_loader, train_set, val_set = None, None, None, None
 
         # Setting model to evaluation mode
-        trainingModel.eval()
+        testingModel.eval()
         print('Running the trained model on' + str(len(train_set)) + 'sample data')
         # No weight updates
         with torch.no_grad():
@@ -264,7 +266,7 @@ class TrainerAndTester:
                 #labels.append(torch.argmax(y.view(1, self.vars.no_classes), dim=1).data)
                 labels.append(torch.argmax(y.view(1, self.vars.no_classes), dim=1).data)
 
-                y_val = trainingModel(X.view(-1, 3, self.vars.image_size, self.vars.image_size))
+                y_val = testingModel(X.view(-1, 3, self.vars.image_size, self.vars.image_size))
 
                 # The argmax of the predicted tensor is assigned as our label
                 pred_label = torch.argmax(y_val, dim=1).data

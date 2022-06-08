@@ -1,6 +1,9 @@
+####################################################################################################
+# this is the steps to download the already processed brain CT images as well as the trained weight
+####################################################################################################
 import os
 import gdown
-from pathlib import Path
+#from pathlib import Path
 from utils.ClassifierOptions import Options
 
 globalVars = Options()

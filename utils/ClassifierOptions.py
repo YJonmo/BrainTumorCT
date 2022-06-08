@@ -49,6 +49,11 @@ class Options:
                                  help="path to the saved models",
                                  default=os.path.join(ROOT, 'saved_models'))
 
+        self.parser.add_argument("--test_dicom",
+                                 type=str,
+                                 help="path to the saved models",
+                                 default=os.path.join(ROOT, 'test_data'))
+
 
         self.parser.add_argument("--no_classes",
                                  type=int,
