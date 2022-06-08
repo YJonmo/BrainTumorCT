@@ -26,10 +26,10 @@ class CT_preprocess():
     def extract_dicom(self, rewrite=False):#, image_size, imageSizeThreshMax, imageSizeThreshMin, rewrite=False):
         if not os.path.exists(self.vars.data_jpg):
             os.mkdir(self.vars.data_jpg)
-            self.do_process(self)
+            self.do_process()
         else:
             if rewrite:
-                self.do_process(self)
+                self.do_process()
 
     def do_process(self):
         CTs = sorted(glob.glob(self.vars.data_dicom + '/*'))
