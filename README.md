@@ -5,8 +5,9 @@ The data is not publically available, as a result only the training pipeline and
 
 Intall the required packages using
 
+```bash
 pip install -r  requirements.txt 
-
+```
 Link for a pretrained network to perform binary classification (tumore versus no tumor):
 
 https://drive.google.com/file/d/18oK4RWmfACHVo6PtbZshYcBxiIiDC65L/view?usp=sharing
