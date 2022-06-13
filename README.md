@@ -21,8 +21,9 @@ https://drive.google.com/uc?export=download&id=1VTUXanL66UL_YNN9twaWX1a0nspEhQb2
 
 To download the trained model and the data run this code:
 
+```bash
 python download_data_trained_model.py
-
+```
 
 
 Downloading the preprocessed data from the google drive in pickle format as well as the pretrained model:
