@@ -33,8 +33,7 @@ You can run the downloaded trained model on 3655 images which was obtained using
 
 The model was trained for 40 epochs on batch size of 2.
 
-
-''' python
+```bash
 
 !python demo_test.py 
 
@@ -42,22 +41,23 @@ ConfusionMatrix = plt.imread('ConfusionMatrix.png')
 
 plt.imshow(ConfusionMatrix)
 
-'''
+```
 
 
 You can train the model using the different arguments available in the utils/ClassifierOptions.py The following bash command will trigger a training for batch size 2: and 10 epochs. The trained model will be saved in the save_models directoy with the naming of "model_name+batch_size+number of classes+number of epochs.pt"
 
 
-'''python
+```bash
 
 python demo_train.py --batch_size 2 --epochs 10  
 
-'''
+```
 
 
 And after training the model can be evaluated using following code:
 
-'''python
+
+```bash
 
 python demo_test.py --saved_model_name /content/drive/MyDrive/BrainTumorCT2/saved_models/resnet50_2_2_10.pt
 
@@ -65,4 +65,4 @@ ConfusionMatrix = plt.imread('ConfusionMatrix.png')
 
 plt.imshow(ConfusionMatrix)
 
-'''
+```
