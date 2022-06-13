@@ -35,7 +35,7 @@ The model was trained for 40 epochs on batch size of 2.
 
 ```bash
 
-!python demo_test.py 
+python demo_test.py 
 
 ConfusionMatrix = plt.imread('ConfusionMatrix.png')
 
